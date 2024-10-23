@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Waiter & Pay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            width: 350px;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ffb88c;
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            background-color: #ff5f6d;
+            background-image: linear-gradient(315deg, #ff5f6d 0%, #ffc371 74%);
+            border: none;
+            border-radius: 30px;
+            padding: 15px 40px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+            box-shadow: 0 5px 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+    <script>
+        function redirectToPayment() {
+            var waiter = document.getElementById("waiterSelect").value;
+
+            if (waiter === "") {
+                alert("Please select a waiter.");
+                return;
+            }
+
+            var paymentUrl = "https://razorpay.me/@quicktips?purpose=Tip%20for%20" + waiter;
+
+            window.location.href = paymentUrl;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Waiter and Pay Tip</h1>
+
+        <!-- Waiter Selection Dropdown -->
+        <label for="waiterSelect">Choose a waiter:</label>
+        <select id="waiterSelect">
+            <option value="" disabled selected>Select Waiter</option>
+            <option value="Bhanu">Bhanu</option>
+            <option value="Rajesh">Rajesh</option>
+            <option value="Pooja">Pooja</option>
+        </select>
+
+        <br>
+
+        <!-- Pay Button -->
+        <button onclick="redirectToPayment()">Pay Now</button>
+    </div>
+</body>
+</html>
